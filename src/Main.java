@@ -245,16 +245,4 @@ public class Main {
     static void fakeClearScreen() {
         for(int i = 0; i < 100; i++) System.out.println("\n");
     }
-
-
-    /*
-    - Consultar qué objeto hay en determinada posición, indicando sus atributos y su superficie.
-    - Dar de baja el objeto de cierta posición.
-    - Agregar un nuevo objeto de forma manual (para esto debe verificar si hay espacio
-    libre en el vector, de lo contrario, deberá redimensionarlo).
-    - Listar todos los objetos.
-    - Indicar la superficie máxima.
-    - Indicar la superficie mínima.
-    - Finalizar la aplicación
-     */
 }
