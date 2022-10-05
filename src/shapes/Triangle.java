@@ -1,8 +1,18 @@
 package shapes;
 
+import application.Application;
+
 public class Triangle extends Shape {
     private final double width;
     private final double height;
+
+    public Triangle() {
+        System.out.print("Width: ");
+        this.width = Application.userInput.nextDouble();
+
+        System.out.print("Height: ");
+        this.height = Application.userInput.nextDouble();
+    }
 
     public Triangle(double width, double height) {
         this.width = width;

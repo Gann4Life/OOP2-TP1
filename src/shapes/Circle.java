@@ -1,7 +1,14 @@
 package shapes;
 
+import application.Application;
+
 public class Circle extends Shape {
     private final double radius;
+    public Circle() {
+        System.out.print("Radius: ");
+        this.radius = Application.userInput.nextDouble();
+    }
+
     public Circle(double radius) {
         this.radius = radius;
     }

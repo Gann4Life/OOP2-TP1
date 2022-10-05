@@ -1,11 +1,20 @@
 package shapes;
 
+import application.Application;
+
 public class Rectangle extends Shape {
     private double width;
     private double height;
 
-    public Rectangle(double width, double height) {
+    public Rectangle() {
+        System.out.print("Width: ");
+        this.width = Application.userInput.nextDouble();
 
+        System.out.print("Height: ");
+        this.height = Application.userInput.nextDouble();
+    }
+
+    public Rectangle(double width, double height) {
         this.width = width;
         this.height = height;
     }

@@ -1,7 +1,6 @@
 package shapes;
 
 public abstract class Shape {
-    private char type;
 
     // PRE: The string passed must have correct formatting. Unexpected issues might happen otherwise.
     //      Example: '<char> <double> <double>'
@@ -13,12 +12,16 @@ public abstract class Shape {
         double valueA = Double.parseDouble(splitData[1]);
         double valueB = splitData.length > 2 ? Double.parseDouble(splitData[2]) : -1;
 
-        switch(splitData[0]){
-            case "C": return new Circle(valueA);
-            case "R": return new Rectangle(valueA, valueB);
-            case "T": return new Triangle(valueA, valueB);
-            default: return null;
-        }
+        return switch (splitData[0]) {
+            case "C" -> new Circle(valueA);
+            case "R" -> new Rectangle(valueA, valueB);
+            case "T" -> new Triangle(valueA, valueB);
+            default -> null;
+        };
+    }
+
+    public boolean isEmpty() {
+        return this.getClass() == EmptyShape.class;
     }
 
     public abstract double getArea();

@@ -1,14 +1,11 @@
 package optionSelector;
 
-import java.util.Scanner;
+import application.Application;
 
 public class SelectableOptions {
     private String inputMessage = "Select one of the options above: ";
     private String[] options;
     private IAction[] actions;
-
-    @Deprecated(forRemoval = true)
-    private int selectedIndex;
 
     public SelectableOptions(String[] options) {
         this.options = options;
@@ -23,10 +20,8 @@ public class SelectableOptions {
 
     public void waitForUserInputAndSelect() {
         System.out.print(inputMessage);
-
-        Scanner scanner = new Scanner(System.in);
         try {
-            select(scanner.nextInt());
+            select(Application.userInput.nextInt());
         }
         catch(Exception e) {
             System.out.println("Invalid option! Try again.");
@@ -57,10 +52,5 @@ public class SelectableOptions {
     // POS: Returns the lenght from all the actions available on the array of strings.
     public int getLength() {
         return options.length;
-    }
-
-    @Deprecated(forRemoval = true)
-    public int getSelectedIndex() {
-        return selectedIndex;
     }
 }

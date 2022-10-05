@@ -1,0 +1,117 @@
+@startuml
+
+title "Santiago Ariel Mansilla - UML - Trabajo Práctico 1"
+
+class Main {
+    +{static} main(String[]): void
+}
+
+package application {
+    class Application {
+        +{static} userInput: Scanner
+        -shapes: Shape[]
+        -shapeAnalyzer: ShapeAnalyzer
+
+        -mainMenuScreen(): void
+        -viewShapeScreen(): void
+        -removeShapeScreen(): void
+        -addShapeScreen(): void
+        -showAllShapesScreen(): void
+        -showShapeWithGreatestArea(): void
+        -unavailableOptionScreen(): void
+        -waitForConfirmation(String): void
+        -fakeClearScreen(): void
+    }
+}
+
+package optionSeletor {
+    class IAction
+    class SelectableOptions {
+        -inputMessage: String
+        -options: String[]
+        -actions: IAction[]
+
+        +SelectableOptions(String)
+        
+        +select(int): void
+        +waitForUserInputAndSelect(): void
+        +setInputMessage(String): void
+        +configureAction(int, IAction): void
+        +displayOptions(): void
+        +getLength(): int
+    }
+
+    SelectableOptions o- IAction
+}
+
+package shapes {
+    abstract class Shape {
+        +{static} getNewShapeFromData(String data): Shape
+        +isEmpty(): boolean
+        +{abstract} getArea(): double
+        +{abstract} menuName(): String
+        +{abstract} toString(): String
+    }
+    class EmptyShape
+    class Circle {
+        -radius: double
+        
+        +Circle()
+        +Circle(double)
+    }
+    class Rectangle {
+        -width: double
+        -height: double
+
+        +Rectangle()
+        +Rectangle(double, double)
+    }
+    class Triangle {
+        -width: double
+        -height: double
+
+        +Triangle()
+        +Triangle(double, double)
+    }
+
+    Shape <|-- EmptyShape
+    Shape <|-- Circle
+    Shape <|-- Rectangle
+    Shape <|-- Triangle
+}
+
+package utilities {
+    class DataReader {
+        +{static} getFileLines(String path): String[]
+    }
+    class ShapeAnalyzer {
+        -shapes: Shape[]
+        
+        +dataToShapes(String[]): Shape[]
+        +shapeWithGreatestArea(): Shape
+        +shapeWithLeastArea(): Shape
+    }
+    class ShapeHandler {
+        -shapes: Shape[]
+
+        +ShapeHandler(Shape[])
+        
+        +add(Shape): void
+        +remove(int): void
+        +getResult(): Shape[]
+        -hasEmptyField(): boolean
+        -fillEmptyField(Shape): void
+        -addNewShapeResizingArray(Shape): void
+    }
+}
+
+Main --> Application: "new Application()"
+
+Application o- Shape
+
+Application o-- DataReader
+Application *-- ShapeAnalyzer
+Application *-- ShapeHandler
+Application *- SelectableOptions
+
+@enduml
